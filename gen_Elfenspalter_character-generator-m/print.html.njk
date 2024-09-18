@@ -1,0 +1,281 @@
+<link href="https://cdn.spalter.li/elfie_main.css" rel="stylesheet">
+<script src="https://cdn.spalter.li/elfie_charnames.js"></script>
+<script src="https://cdn.spalter.li/elfie_main.js"></script>
+
+<body>
+  <center><h1><span id="name">Name</span></h1>
+  <i><span id="class">Klasse</span></i></center>
+
+  <br>
+
+  <table>
+    <tr>
+      <th colspan="4">STATS</th>
+    </tr>
+    <tr>
+      <th style="width: 25%;">Strenght</th>
+      <th style="width: 25%;">Speed</th>
+      <th style="width: 25%;">Intellect</th>
+      <th style="width: 25%;">Combat</th>
+    </tr>
+    <tr>
+      <td><span id="strenght">36</span></td>
+      <td><span id="speed">36</span></td>
+      <td><span id="intellect">36</span></td>
+      <td><span id="combat">36</span></td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table>
+    <tr>
+      <th colspan="3">SAVES</th>
+    </tr>
+    <tr>
+      <th style="width: 33%;">Fear</th>
+      <th style="width: 33%;">Saniy</th>
+      <th style="width: 33%;">Body</th>
+    </tr>
+    <tr>
+      <td><span id="fear">36</span></td>
+      <td><span id="sanity">36</span></td>
+      <td><span id="body">36</span></td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table>
+    <tr>
+      <th colspan="3">TRAUMA RESPONSE</th>
+    </tr>
+    <tr>
+      <td class="tbltext"><span id="trauma">Trauma Response</span></td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table>
+    <tr>
+      <th colspan="3">HEALTH</th>
+    </tr>
+    <tr>
+      <th style="width: 50%;">Health current</th>
+      <th style="width: 50%;">Health max</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td><span id="health">Health</span></td>
+    </tr>
+    <tr>
+      <th style="width: 50%;">Wounds taken</th>
+      <th style="width: 50%;">Wounds Max</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td><span id="wounds">36</span></td>
+    </tr>
+    <tr>
+      <th style="width: 50%;">Stress current</th>
+      <th style="width: 50%;">Stress min</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td><span id="stress">Stress</span></td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table>
+    <tr>
+      <th colspan="3">SKILLS</th>
+    </tr>
+    <tr>
+      <td class="tbltext"><span id="skills">Skills</span></td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table>
+    <tr>
+      <th colspan="3">Equipment</th>
+    </tr>
+    <tr>
+      <td class="tbltext"><span id="equipment">Equipment</span></td>
+    </tr>
+  </table>
+
+  <br>
+
+  <small>This product is based on the Mothership® Sci-Fi Horror Role Playing Game, published by
+Tuesday Knight Games. This product is published under license. MOTHERSHIP® is a
+registered trademark of Tuesday Knight Games. All rights reserved. For additional information,
+visit www.tuesdayknightgames.com or contact contact@tuesdayknightgames.com.<br>
+Generator by Elfenspalter // Seed: {{ config.seed }}</small>
+
+<br><br>
+
+<center><img src="{{ images['logo.png'] }}" width="100%"/></center>
+
+<br><br>
+
+</body>
+
+<script>
+  // Equipment for every class
+  const loadouts = {
+      android: [
+          "Vaccsuit (AP 3), Smart Rifle (2 mags), Infrared Goggles, Mylar Blanket",
+          "Vaccsuit (AP 3), Revolver (12 rounds), Long-range Comms, Satchel",
+          "Hazard Suit (AP 5), Revolver (6 rounds), Defibrillator, First Aid Kit, Flashlight",
+          "Hazard Suit (AP 5), Foam Gun (2 charges), Sample Collection Kit, Screwdriver (as Assorted Tools)",
+          "Standard Battle Dress (AP 7), Tranq Pistol (3 shots), Paracord (100m)",
+          "Standard Crew Attire (AP 1), Stun Baton, Small Pet (organic)",
+          "Standard Crew Attire (AP 1), Scalpel, Bioscanner",
+          "Standard Crew Attire (AP 1), Frag Grenade, Pen Knife",
+          "Manufacturer Supplied Attire (AP 1), Jump-9 Ticket (destination blank)",
+          "Corporate Attire (AP 1), VIP Corporate Key Card"
+      ],
+      marine: [
+          "Tank Top and Camo Pants (AP 1), Combat Knife (as Scalpel DMG [+]), Stimpak (x5)",
+          "Advanced Battle Dress (AP 10), Flamethrower (4 shots), Boarding Axe",
+          "Standard Battle Dress (AP 7), Combat Shotgun (4 rounds), Rucksack, Camping Gear",
+          "Standard Battle Dress (AP 7), Pulse Rifle (3 mags), Infrared Goggles",
+          "Standard Battle Dress (AP 7), Smart Rifle (3 mags), Binoculars, Personal Locator",
+          "Standard Battle Dress (AP 7), SMG (3 mags), MRE (x7)",
+          "Fatigues (AP 2), Combat Shotgun (2 rounds), Dog (pet), Leash, Tennis Ball",
+          "Fatigues (AP 2), Revolver (12 rounds), Frag Grenade",
+          "Dress Uniform (AP 1), Revolver (1 round), Challenge Coin",
+          "Advanced Battle Dress (AP 10), General-Purpose Machine Gun (1 Can of ammo), HUD"
+      ],
+      scientist: [
+          "Hazard Suit (AP 5), Tranq Pistol (3 shots), Bioscanner, Sample Collection Kit",
+          "Hazard Suit (AP 5), Flamethrower (1 charge), Stimpak, Electronic Tool Set",
+          "Vaccsuit (AP 3), Rigging Gun, Sample Collection Kit, Flashlight, Lab Rat (pet)",
+          "Vaccsuit (AP 3), Foam Gun (2 charges), Foldable Stretcher, First Aid Kit, Radiation Pills (x5)",
+          "Lab Coat (AP 1), Screwdriver (as Assorted Tools), Medscanner, Vaccine (1 dose)",
+          "Lab Coat (AP 1), Cybernetic Diagnostic Scanner, Portable Computer Terminal",
+          "Scrubs (AP 1), Scalpel, Automed (x5), Oxygen Tank with Filter Mask",
+          "Scrubs (AP 1), Vial of Acid, Mylar Blanket, First Aid Kit",
+          "Standard Crew Attire (AP 1), Utility Knife (as Scalpel), Cybernetic Diagnostic Scanner, Duct Tape",
+          "Civilian Clothes (AP 1), Briefcase, Prescription Pad, Fountain Pen (Poison Injector)"
+      ],
+      teamster: [
+          "Vaccsuit (AP 3), Laser Cutter (1 extra battery), Patch Kit (x3), Toolbelt with Assorted Tools",
+          "Vaccsuit (AP 3), Revolver (6 rounds), Crowbar, Flashlight",
+          "Vaccsuit (AP 3), Rigging Gun (1 shot), Shovel, Salvage Drone",
+          "Hazard Suit (AP 5), Vibechete, Spanner, Camping Gear, Water Filtration Device",
+          "Heavy Duty Work Clothes (AP 2), Explosives & Detonator, Cigarettes",
+          "Heavy Duty Work Clothes (AP 2), Drill (as Assorted Tools), Paracord (100m), Salvage Drone",
+          "Standard Crew Attire (AP 1), Combat Shotgun (4 rounds), Extension Cord (20m), Cat (pet)",
+          "Standard Crew Attire (AP 1), Nail Gun (32 rounds), Head Lamp, Toolbelt with Assorted Tools, Lunch Box",
+          "Standard Crew Attire (AP 1), Flare Gun (2 rounds), Water Filtration Device, Personal Locator, Subsurface Scanner",
+          "Lounge Wear (AP 1), Crowbar, Stimpak, Six Pack of Beer"
+      ]
+  };
+
+  // Generate the startvalues
+  strenght = dice.roll('2d10+25').total;
+  speed = dice.roll('2d10+25').total;
+  intellect = dice.roll('2d10+25').total;
+  combat = dice.roll('2d10+25').total;
+  fear = dice.roll('2d10+10').total;
+  sanity = dice.roll('2d10+10').total;
+  body = dice.roll('2d10+10').total;
+  let attributes = ["strenght", "speed", "intellect", "combat"];
+  stress = 2;
+  wounds = 2;
+  health = dice.roll('1d10+10').total;
+
+    // Generate Name
+    gender = "{{ config.gender.selected }}";
+    if (gender == "zufall") {
+      name = getRandomFullName();
+    } else if (gender == "mann") {
+      name = getRandomFullName(1);
+    } else {
+      name = getRandomFullName(2);
+    }
+
+    // Select a class
+    const classes = ["Marine", "Android", "Scientist", "Teamster"];
+    classsel = "{{ config.class.selected }}";
+    if (classsel == "marine") {
+      clas = "Marine";
+    } else if (classsel == "android") {
+      clas = "Android";
+    } else if (classsel == "scientist") {
+      clas = "Scientist";
+    } else if (classsel == "teamster") {
+      clas = "Teamster";
+    } else {
+      clas = getRandomItem(classes)
+    }
+
+    // Class Perks
+    if (classsel == "marine") {
+      combat += 10;
+      body += 10;
+      fear += 20;
+      wounds += 1;
+      skills = "Military Training, Athletics<br><i><b>Bonus:</b> 1 Expert Skill OR: 2 Trained Skills</i>";
+      trauma = "WHENEVER YOU PANIC, EVERY CLOSE FRIENDLY PLAYER MUST MAKE A FEAR SAVE.";
+    } else if (classsel == "android") {
+      clas = "Android";
+      intellect += 10;
+      fear += 60;
+      wounds += 1;
+      skills = "Linguistics, Computers, Mathematics<br><i><b>Bonus:</b> 1 Expert Skill OR: 2 Trained Skills</i>";
+      let randomAttribute = attributes[Math.floor(random() * attributes.length)];
+      eval(randomAttribute + " += 10");
+      trauma = "FEAR SAVES MADE BY CLOSE FRIENDLY PLAYERS ARE AT DISADVANTAGE.";
+    } else if (classsel == "scientist") {
+      intellect += 10;
+      sanity += 30;
+      skills = "1 Master Skill, and an Expert and Trained Skill prerequisite.<br><i><b>Bonus:</b> 1 Trained Skill</i>";
+      let randomAttribute = attributes[Math.floor(random() * attributes.length)];
+      eval(randomAttribute + " += 5");
+      trauma = "WHENEVER YOU FAIL A SANITY SAVE, ALL CLOSE FRIENDLY PLAYERS GAIN 1 STRESS.";
+    } else {
+      strenght += 5;
+      speed += 5;
+      intellect += 5;
+      combat += 5;
+      fear += 10;
+      sanity += 10;
+      body += 10;
+      skills = "Industrial Equipment, Zero-G<br><i><b>Bonus:</b> 1 Trained Skill and 1 Expert Skill.</i>";
+      trauma = "ONCE PER SESSION, YOU MAY TAKE ADVANTAGE ON A PANIC CHECK.";
+    }
+    
+    // Equipment choosing
+    let randomIndex = Math.floor(random() * 10);
+    equipment = loadouts[clas.toLowerCase()][randomIndex];
+
+    // Generate Credits
+    credits = ", Credits: ";
+    credits += dice.roll('2d10*10').total;
+    equipment += credits;
+
+    // OutputsTheIDs
+    document.getElementById("strenght").textContent = strenght;
+    document.getElementById("speed").textContent = speed;
+    document.getElementById("intellect").textContent = intellect;
+    document.getElementById("combat").textContent = combat;
+    document.getElementById("fear").textContent = fear;
+    document.getElementById("sanity").textContent = sanity;
+    document.getElementById("body").textContent = body;
+    document.getElementById("stress").textContent = stress;
+    document.getElementById("wounds").textContent = wounds;
+    document.getElementById("health").textContent = health;
+    document.getElementById("trauma").textContent = trauma;
+    document.getElementById("equipment").innerHTML = equipment;
+    document.getElementById("skills").innerHTML = skills;
+    
+    document.getElementById("name").textContent = name;
+    document.getElementById("class").textContent = clas;
+</script>
